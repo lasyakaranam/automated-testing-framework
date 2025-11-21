@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_HOME = tool name: 'NodeJS' // NodeJS name from Global Tools
-        PATH = "${env.NODE_HOME}/bin:${env.PATH}"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -15,19 +10,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                // Use npm installed on the system
                 bat 'npm ci'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
+                // Use npx to run Cypress
                 bat 'npx cypress run'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'echo "Deploy your app here"' // Replace with your actual deployment commands
+                bat 'echo "Deploy your app here"' // Replace with your real deployment commands
             }
         }
     }
