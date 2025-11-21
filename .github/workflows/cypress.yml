@@ -25,10 +25,10 @@ jobs:
       - name: Verify Cypress
         run: npx cypress verify
 
-      - name: Run Cypress Tests
-        run: npx cypress run --browser chrome
+      - name: Run Cypress Tests (Electron)
+        run: npx cypress run --browser electron
 
-      - name: Upload Cypress Artifacts (Screenshots & Videos)
+      - name: Upload Cypress Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: cypress-artifacts
